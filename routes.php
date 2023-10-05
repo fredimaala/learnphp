@@ -1,12 +1,12 @@
 <?php
+
+use App\Controllers\PublicController;
 use App\Router;
 
-Router::addRoute('/', function(){
-    $name = 'fredi';
-    include 'view/about.php';
+Router::get('/', [PublicController::class, 'index']);
 
-});
+Router::get('/about', [PublicController::class, 'about']);
 
-Router::addRoute('/about', function(){
-    include 'views/about.php';
-});
+Router::get('/form', [PublicController::class, 'form']);
+
+Router::post('/form', [PublicController::class, 'formpost']);

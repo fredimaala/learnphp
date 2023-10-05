@@ -7,14 +7,25 @@ spl_autoload_register(function ($class){
     require_once __DIR__ . "/../src/$class.php";
 });
 
-require __DIR__ . '/../routers.php/';
+require __DIR__ . '/../routes.php';
 
-
-
-$router = new App\Router($_SERVER['REQUEST_URI']);
+$router = new App\Router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 $match = $router->match();
-if($match){
-    call_user_func($match['action']);
+if($match) {
+    if(is_callable($match['action'])){
+        call_user_func($match['action']);
+    } elseif(is_array($match['action']) && count($match['action']) === 2) {
+        $class = $match['action'][0];
+        $controller = new $class();
+        $method = $match['action'][1];
+        $controller->$method();
+    } else {
+        throw new Exception('invalid router action');
+    }
+   
+} else {
+    http_response_code(404);
+    echo 404;
 }
 
 //switch($_SERVER['REQUEST_URI']){
