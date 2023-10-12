@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Models\Post;
 use PDO;
 use PDOException;
+use stdClass;
 
 class DB{
     private $conn;
@@ -22,13 +24,13 @@ class DB{
         }
     }
 
-    public function all(string $tabel){
+    public function all($tabel, $class){
         $stmt = $this->conn->prepare("SELECT * FROM $tabel");
         $stmt->execute();
         
         
         // set the resulting array to associative
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         return $stmt->fetchAll();
     }
 }

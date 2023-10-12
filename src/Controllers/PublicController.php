@@ -2,27 +2,22 @@
 namespace App\Controllers;
 
 use App\DB;
+use App\Models\Post;
+use App\Models\User;
+
 
 class PublicController {
     public function index(){
-        $db = new DB();
-        $posts = $db->all('users');
-        var_dump($posts);
-          
-
-        $name = 'Fredi';
-        include 'views/index.php';
+        $posts = Post::all();
+        view('index', compact('posts'));
     }
 
     public function about(){
-        include 'views/about.php';
+        view('about');
     }
 
     public function form(){
-        var_dump($_GET);
-        var_dump($_POST);
-        //var_dump($_SERVER);
-        include 'views/form.php';
+        view('form');
     }
 
     public function formPost(){
