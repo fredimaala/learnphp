@@ -1,6 +1,6 @@
 <?php include __DIR__ . '/../partials/header.php' ?>
 <div class="container">
-    <a class="button is-primary">Add Post</a>
+    <a href="/admin/posts/create" class="button is-primary">Add Post</a>
     <table class="table is-fullwidth is-striped">
         <thead>
             <th>Id</th>
@@ -14,9 +14,9 @@
                     <td><?= $post->title ?></td>
                     <td>
                         <div class="buttons has-addons">
-                            <button class="button is-info">View</button>
-                            <button class="button is-warning">Edit</button>
-                            <button class="button is-danger">Delete</button>
+                            <a href="/admin/posts/show?id=<?=$post->id?>" class="button is-info">View</a>
+                            <a href="/admin/posts/edit?id=<?=$post->id?>" class="button is-warning">Edit</a>
+                            <a href="/admin/posts/delete?id=<?=$post->id?>" class="button is-danger">Delete</a>
                         </div>
                     </td>
                 </tr>

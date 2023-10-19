@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\NotFoundExceptions;
 use App\Router;
 
 spl_autoload_register(function ($class){
@@ -10,6 +11,7 @@ spl_autoload_register(function ($class){
 require __DIR__ . '/../helpers.php';
 require __DIR__ . '/../routes.php';
 
+try{
 $router = new App\Router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
 $match = $router->match();
 if($match) {
@@ -23,12 +25,13 @@ if($match) {
     } else {
         throw new Exception('invalid router action');
     }
-   
-} else {
+    } else {
+    throw new NotFoundExceptions();
+    }
+} catch(NotFoundExceptions $e){
     http_response_code(404);
-    echo 404;
+    view('404');
 }
-
 //switch($_SERVER['REQUEST_URI']){
 //    case'/':
 //        include 'views/index.php';
