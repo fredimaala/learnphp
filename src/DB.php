@@ -43,6 +43,16 @@ class DB
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         return $stmt->fetch();
     }
+    public function where(string $tabel, string $class, $fieldName, $value)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM $tabel WHERE $fieldName='$value'");
+        $stmt->execute();
+
+
+        // set the resulting array to associative
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
+        return $stmt->fetchAll();
+    }
 
 
 
