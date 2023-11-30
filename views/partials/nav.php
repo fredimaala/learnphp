@@ -29,12 +29,15 @@
           Admin
         </a>
 
-        <div class="navbar-dropdown">
-          <a href="/admin/posts" class="navbar-item">
-            About
-          </a>
-         
-        </div>
+             <div class="navbar-dropdown">
+               <a href="/admin/posts" class="navbar-item">
+                 Posts
+               </a>
+              <br></br>
+               <a href="/admin/users" class="navbar-item">
+                 Users
+               </a>
+            </div>
       </div>
     </div>
 
