@@ -10,7 +10,11 @@
         <div class="field">
             <label class="label" for="password">Password</label>
             <div class="control">
-                <textarea class="textarea" placeholder="Password" id="body" name="body"></textarea>
+                <input 
+                class="input" 
+                type="password" 
+                id="password" 
+                name="password">
             </div>
         </div>
         <div class="field">

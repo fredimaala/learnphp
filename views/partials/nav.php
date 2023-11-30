@@ -33,7 +33,7 @@
                <a href="/admin/posts" class="navbar-item">
                  Posts
                </a>
-              <br></br>
+              
                <a href="/admin/users" class="navbar-item">
                  Users
                </a>
